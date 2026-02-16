@@ -15,35 +15,9 @@ This project showcases a complete DevOps workflow for deploying a containerized 
 - **High availability** with Application Load Balancer
 
 ## 🏗️ Architecture
+![diagram](https://github.com/user-attachments/assets/c373a12d-96fa-46df-9389-d03a1cf52ff2)
 
-┌─────────────────────────────────────────────────────────────┐
-│ AWS Cloud │
-│ │
-│ ┌──────────────┐ ┌─────────────────────────────┐ │
-│ │ Internet │──────│ Application Load Balancer │ │
-│ │ Gateway │ └────────────┬────────────────┘ │
-│ └──────────────┘ │ │
-│ │ │ │
-│ │ ┌────────▼────────┐ │
-│ │ │ ECS Fargate │ │
-│ ┌──────▼──────┐ │ Service │ │
-│ │ Jenkins │◄─────────│ (Container) │ │
-│ │ Server │ Ansible └─────────────────┘ │
-│ │ (EC2) │ Config │
-│ └─────┬───────┘ ┌─────────────────┐ │
-│ │ │ Amazon ECR │ │
-│ └──────────────────▶│ (Docker Repo) │ │
-│ └─────────────────┘ │
-│ │
-│ ┌─────────────────────────────────────────────────┐ │
-│ │ Monitoring Stack (EC2) │ │
-│ │ - Prometheus (metrics collection) │ │
-│ │ - CloudWatch Exporter (AWS metrics) │ │
-│ │ - Grafana (visualization) │ │
-│ └─────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
 
-text
 
 ## 🚀 Features
 
@@ -123,3 +97,7 @@ Builds new Docker image
 Pushes to ECR with build number
 
 Updates ECS service
+
+![צילום מסך 2026-02-16 212346](https://github.com/user-attachments/assets/f218e4f9-250b-462b-b450-3a2fd94b5457)
+![צילום מסך 2026-02-16 211904](https://github.com/user-attachments/assets/89179cf0-e0fa-4f06-8963-fedc7428272f)
+
