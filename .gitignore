@@ -1,0 +1,78 @@
+############################
+# Terraform
+############################
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+############################
+# Environment variables
+############################
+.env
+.env.*
+*.env
+
+############################
+# AWS credentials
+############################
+.aws/
+credentials
+config
+
+############################
+# SSH Keys
+############################
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+############################
+# Docker
+############################
+*.tar
+docker-compose.override.yml
+
+############################
+# Node (if app uses it)
+############################
+node_modules/
+npm-debug.log
+yarn-error.log
+
+############################
+# Python (if relevant)
+############################
+__pycache__/
+*.pyc
+venv/
+.env/
+
+############################
+# IDE
+############################
+.vscode/
+.idea/
+
+############################
+# OS
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Logs
+############################
+*.log
+logs/
+
+############################
+# Jenkins
+############################
+jenkins_home/

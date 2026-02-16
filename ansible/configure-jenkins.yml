@@ -1,0 +1,47 @@
+---
+- name: Configure Jenkins
+  hosts: jenkins
+  become: yes
+  
+  vars:
+    jenkins_home: /var/lib/jenkins
+    jenkins_plugins:
+      - git
+      - workflow-aggregator
+      - docker-workflow
+      - pipeline-stage-view
+      - aws-credentials
+    
+  tasks:
+    - name: Wait for Jenkins to start
+      uri:
+        url: "http://localhost:8080"
+        status_code: 200,403
+      register: result
+      until: result.status in [200, 403]
+      retries: 30
+      delay: 10
+    
+    - name: Install Jenkins CLI
+      get_url:
+        url: "http://localhost:8080/jnlpJars/jenkins-cli.jar"
+        dest: "/tmp/jenkins-cli.jar"
+        mode: '0755'
+    
+    - name: Get initial admin password
+      slurp:
+        src: "{{ jenkins_home }}/secrets/initialAdminPassword"
+      register: admin_password
+      ignore_errors: yes
+    
+    - name: Install Jenkins plugins
+      shell: |
+        java -jar /tmp/jenkins-cli.jar -s http://localhost:8080/ -auth admin:{{ admin_password.content | b64decode }} install-plugin {{ item }}
+      loop: "{{ jenkins_plugins }}"
+      when: admin_password is defined
+      ignore_errors: yes
+    
+    - name: Restart Jenkins
+      systemd:
+        name: jenkins
+        state: restarted
