@@ -4,7 +4,7 @@ const port = 80;
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Hello from ECS Fargate!!!!!!!!!!',
+    message: 'Hello from ECS Fargate!!!!!!!!!! ori noob',
     version: process.env.BUILD_ID || 'unknown',
     environment: process.env.ENVIRONMENT || 'dev'
   });
